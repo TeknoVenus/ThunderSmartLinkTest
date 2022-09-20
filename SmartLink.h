@@ -26,15 +26,6 @@ using namespace WPEFramework;
 
 using BaseClass = RPC::SmartInterfaceType<Exchange::IDictionary>;
 
-/**
- * @brief Connection to the Sample Plugin over COM-RPC
- *
- * Acts as a convenience library over the COM-RPC connection to make it easy for clients
- * to register for notifications and other useful events
- *
- * Uses the SmartLink which can automatically handle disconnections and plugin
- * failures for us!
- */
 class SmartLink : public BaseClass {
 
 public:
