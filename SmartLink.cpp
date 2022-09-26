@@ -22,6 +22,7 @@
 
 SmartLink::SmartLink(const string& callsign)
     : _callsign(callsign)
+     _dictionaryInterface(nullptr)
 {
     Log("Constructing SamplePlugin link to callsign %s", callsign.c_str());
 
@@ -53,7 +54,7 @@ void SmartLink::Operational(const bool upAndRunning)
     if (upAndRunning) {
         // Connection is good - lets resolve our interfaces
         if (_dictionaryInterface == nullptr) {
-            _dictionaryInterface == BaseClass::Interface();
+            _dictionaryInterface = BaseClass::Interface();
         }
     } else {
         // Connection is bad, unregister from notifications and release our interfaces

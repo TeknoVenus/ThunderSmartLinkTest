@@ -19,6 +19,7 @@
 
 #include "Log.h"
 #include "SmartLink.h"
+#include <unistd.h>
 
 #include <memory>
 
