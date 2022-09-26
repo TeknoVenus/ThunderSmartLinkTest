@@ -15,23 +15,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cmake_minimum_required(VERSION 3.16)
+
 project(SmartLinkTest)
 
-find_package(WPEFrameworkCore REQUIRED)
-find_package(WPEFrameworkCOM REQUIRED)
+set(NAMESPACE WPEFramework)
+
+find_package(${NAMESPACE}Core REQUIRED)
+find_package(${NAMESPACE}WebSocket REQUIRED)
+find_package(${NAMESPACE}Messaging REQUIRED)
+
 
 # Build simple test app to exercise client library
 add_executable(${PROJECT_NAME}
         Module.cpp
         main.cpp
-        SmartLink.cpp
 )
+
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
-        WPEFrameworkCore::WPEFrameworkCore
-        WPEFrameworkCOM::WPEFrameworkCOM
+        ${NAMESPACE}Core::${NAMESPACE}Core
+        ${NAMESPACE}WebSocket::${NAMESPACE}WebSocket
+        # I have no idea why I have to link to Messaging here, but it won't compile if I don't!
+        ${NAMESPACE}Messaging::${NAMESPACE}Messaging
 )
+
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
         CXX_STANDARD 11

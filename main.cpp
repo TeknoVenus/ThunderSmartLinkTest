@@ -18,22 +18,19 @@
  **/
 
 #include "Log.h"
-#include "SmartLink.h"
-#include <unistd.h>
+#include "Module.h"
 
-#include <memory>
+using namespace WPEFramework;
 
 int main(int argc, char const* argv[])
 {
-    auto smartLink = std::unique_ptr<SmartLink>(new SmartLink("Dictionary"));
+    {
+        Log("Sample JSON-RPC Test App");
+        Core::SystemInfo::SetEnvironment(_T("THUNDER_ACCESS"), (_T("127.0.0.1:55555")));
 
-    if (!smartLink->IsOperational()) {
-        Log("Sample plugin not operational");
-    } else {
-        Log("Sample plugin is operational");
+        JSONRPC::SmartLinkType<Core::JSON::IElement> remoteObject(_T("Controller.1"), _T("client.jsonrpc.2"));
     }
 
-    smartLink.reset();
     Core::Singleton::Dispose();
 
     return EXIT_SUCCESS;
