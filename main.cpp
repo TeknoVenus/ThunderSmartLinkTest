@@ -28,7 +28,13 @@ int main(int argc, char const* argv[])
         Log("Sample JSON-RPC Test App");
         Core::SystemInfo::SetEnvironment(_T("THUNDER_ACCESS"), (_T("127.0.0.1:55555")));
 
-        JSONRPC::SmartLinkType<Core::JSON::IElement> remoteObject(_T("Controller.1"), _T("client.jsonrpc.2"));
+        JSONRPC::SmartLinkType<Core::JSON::IElement> remoteObject(_T("Dictionary.1"), _T("client.jsonrpc.2"));
+
+        if (remoteObject.IsActivated()) {
+            Log("Dictionary is activated");
+        } else {
+            Log("Dictionary is deactivated");
+        }
     }
 
     Core::Singleton::Dispose();
